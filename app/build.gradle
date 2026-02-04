@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     defaultConfig {
-        applicationId "com.eanema.graph89"
+        applicationId 'com.perihelion.development.graph89'
         minSdkVersion 19
-        targetSdkVersion 34
+        targetSdkVersion 35
         // with version update also update the copyright year in the about dialog, controls/AboutScreen.java
-        versionCode 1200
+        versionCode 1201
         versionName "1.2.0"
         ndk {
             // TODO: Fix 64-bit ABIs
