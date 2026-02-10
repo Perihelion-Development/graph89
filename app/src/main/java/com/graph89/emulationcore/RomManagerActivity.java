@@ -39,6 +39,7 @@ import android.os.Environment;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.OpenableColumns;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,7 @@ public class RomManagerActivity extends Graph89ActivityBase
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+        getWindow().setDecorFitsSystemWindows(false);
 		setContentView(R.layout.rom_manager_main);
 		mThis = this;
 
@@ -119,6 +121,17 @@ public class RomManagerActivity extends Graph89ActivityBase
 				ShowAddRom(-1);
 			}
 		});
+
+        View root = findViewById(R.id.rom_manager_main);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            v.setPadding(
+                    insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(),
+                    insets.getSystemWindowInsetBottom()
+            );
+            return insets;
+        });
 	}
 
 	@Override

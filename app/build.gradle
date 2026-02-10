@@ -4,10 +4,10 @@ android {
     compileSdkVersion 35
     defaultConfig {
         applicationId 'com.perihelion.development.graph89'
-        minSdkVersion 19
+        minSdkVersion 30
         targetSdkVersion 35
         // with version update also update the copyright year in the about dialog, controls/AboutScreen.java
-        versionCode 1201
+        versionCode 1205
         versionName "1.2.0"
         ndk {
             // TODO: Fix 64-bit ABIs

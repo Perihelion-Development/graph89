@@ -39,6 +39,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Vibrator;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.WindowCompat;
+import android.support.v4.view.WindowInsetsCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -121,10 +124,23 @@ public class EmulatorActivity extends Graph89ActivityBase
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+        getWindow().setDecorFitsSystemWindows(false);
 		setContentView(R.layout.emulator_main);
 		BackwardCompatibility.RunPatches(this);
 		checkPermissions();
 		InitMembers();
+
+        View root = findViewById(R.id.RootView);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            v.setPadding(
+                    insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(),
+                    insets.getSystemWindowInsetBottom()
+            );
+            return insets;
+        });
+
 	/*	
 		try
 		{

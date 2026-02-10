@@ -45,6 +45,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.provider.DocumentsContract;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,6 +99,7 @@ public class BackupManager extends Graph89ActivityBase
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+        getWindow().setDecorFitsSystemWindows(false);
 		setContentView(R.layout.backup_manager_main);
 		this.setRequestedOrientation(EmulatorActivity.Orientation);
 
@@ -141,6 +143,17 @@ public class BackupManager extends Graph89ActivityBase
 				startActivityForResult(myIntent, READ_BACKUP_CODE);
 			}
 		});
+
+        View root = findViewById(R.id.backup_manager_main);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            v.setPadding(
+                    insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(),
+                    insets.getSystemWindowInsetBottom()
+            );
+            return insets;
+        });
 
 	}
 
